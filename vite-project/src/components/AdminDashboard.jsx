@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AdminDashboard.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // 👈 Bootstrap import
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -11,13 +11,25 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="admin-dashboard">
-      <div className="admin-header">
-        <h2>Admin Dashboard</h2>
+    <div className="container my-5">
+      <div className="text-center mb-4">
+        <h2 className="fw-bold">Admin Dashboard</h2>
       </div>
-      <div className="admin-actions">
-        <button onClick={() => navigate('/create-test')}>Create Test</button>
-        <button onClick={logout} className="logout-btn">Log Out</button>
+
+      <div className="d-flex justify-content-center gap-3">
+        <button
+          className="btn btn-primary"
+          onClick={() => navigate('/create-test')}
+        >
+          Create Test
+        </button>
+
+        <button
+          className="btn btn-danger"
+          onClick={logout}
+        >
+          Log Out
+        </button>
       </div>
     </div>
   );

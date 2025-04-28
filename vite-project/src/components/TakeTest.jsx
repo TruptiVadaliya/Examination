@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import './TakeTest.css';
 
 const TakeTest = () => {
   const { id } = useParams();
@@ -65,26 +64,31 @@ const TakeTest = () => {
   }
 
   return (
-    <div>
-      <h3>{test.title} - Time Left: {timeLeft}s</h3>
-      <p><strong>Q{currentQ + 1}:</strong> {q.questionText}</p>
-      {
-        q.options.map((opt, idx) => (
-          <div key={idx}>
-            <input
-              type="radio"
-              name={`question-${currentQ}`}
-              checked={answers[currentQ] === idx}
-              onChange={() => selectAnswer(idx)}
-            />
-            <label>{opt}</label>
+    <div className="container mt-5">
+      <div className="card shadow p-4">
+        <h3>{test.title} - Time Left: <span className="text-danger">{timeLeft}s</span></h3>
+        <p><strong>Q{currentQ + 1}:</strong> {q.questionText}</p>
+        {
+          q.options.map((opt, idx) => (
+            <div key={idx} className="form-check">
+              <input
+                type="radio"
+                className="form-check-input"
+                name={`question-${currentQ}`}
+                checked={answers[currentQ] === idx}
+                onChange={() => selectAnswer(idx)}
+              />
+              <label className="form-check-label">{opt}</label>
+            </div>
+          ))
+        }
+        <div className="mt-3 d-flex justify-content-between">
+          <button className="btn btn-secondary" onClick={prev} disabled={currentQ === 0}>Previous</button>
+          <div>
+            <button className="btn btn-primary" onClick={next} disabled={currentQ === test.questions.length - 1}>Next</button>
+            <button className="btn btn-success ms-2" onClick={submitTest}>Submit</button>
           </div>
-        ))
-      }
-      <div style={{ marginTop: '20px' }}>
-        <button onClick={prev} disabled={currentQ === 0}>Previous</button>
-        <button onClick={next} disabled={currentQ === test.questions.length - 1}>Next</button>
-        <button onClick={submitTest}>Submit</button>
+        </div>
       </div>
     </div>
   );
