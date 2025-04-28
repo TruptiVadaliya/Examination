@@ -23,7 +23,7 @@ const TakeTest = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [submitTest]);
 
   const selectAnswer = (index) => {
     const newAnswers = [...answers];

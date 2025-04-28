@@ -68,7 +68,7 @@ const Login = () => {
             Don't have an account?{' '}
             <span
               className="text-primary"
-              style={{ cursor: 'pointer', textDecoration: 'underline' }}
+              style={{ cursor: 'pointer', textDecoration: 'no-underline' }}
               onClick={() => navigate('/register')}
             >
               Register
